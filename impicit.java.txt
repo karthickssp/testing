@@ -1,0 +1,54 @@
+package com.TestNG;
+
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class GoDaddyTest {
+
+    WebDriver driver;
+
+    @BeforeClass
+    public void setUp() {
+        // set system property for chromedriver
+        System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+
+        // create chrome driver instance
+        driver = new ChromeDriver();
+
+        // set implicit wait time
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        // maximize window
+        driver.manage().window().maximize();
+    }
+
+    @Test
+    public void testGoDaddyHomePage() {
+        // navigate to url
+        driver.get("https://www.godaddy.com/");
+
+        // get page title
+        String pageTitle = driver.getTitle();
+
+        // validate page title
+        Assert.assertEquals(pageTitle, "Domain Names, Websites, Hosting & Online Marketing Tools - GoDaddy");
+
+        // get current url
+        String currentUrl = driver.getCurrentUrl();
+
+        // validate current url
+        Assert.assertEquals(currentUrl, "https://www.godaddy.com/");
+
+    }
+
+    @AfterClass
+    public void tearDown() {
+        // close browser
+        driver.quit();
+    }
+}

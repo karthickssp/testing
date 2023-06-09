@@ -1,0 +1,38 @@
+package com.demo.Selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class BasicTestNG {
+	WebDriver driver;
+  @Test
+  public void facebook() {
+	  
+	  driver.findElement(By.xpath("//*[@id=\'email\']")).sendKeys("abc@gmail.com");
+	  driver.findElement(By.xpath("//*[@id=\'pass\']")).sendKeys("abc@123");
+	 // driver.findElement(By.className("_42ft _4jy0 _6lth _4jy6 _4jy1 selected _51sy")).submit();
+	  
+  }
+  @BeforeTest
+  public void beforeTest() {
+	  
+	  WebDriverManager.chromedriver().setup();
+      ChromeOptions co = new ChromeOptions();
+      co.addArguments("--remote-allow-origins=*");
+      driver = new ChromeDriver(co);
+      driver.get("https://www.facebook.com/");
+     // driver.manage().window().maximize();
+  }
+
+  @AfterTest
+  public void afterTest() {
+  }
+
+}

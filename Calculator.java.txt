@@ -1,0 +1,86 @@
+package com.TestNG;
+
+public class Calculator {
+	
+	public int add(int a,int b)
+	{
+		return a+b;
+	}
+	public int subract(int a,int b)
+	{
+		return a-b;
+	}
+	public float multiply(float n1,float n2)
+	{
+		return n1*n2;
+	}
+	public double divide(double a,double b)
+	{
+		return a/b;
+	}
+
+}
+
+package com.TestNG;
+
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+public class CalculatorTest {
+	Calculator cal = new Calculator();
+  @Test(dataProvider="addtestdata")
+  public void testadd(int n1,int n2,int exp) {
+	  int actual = cal.add(n1, n2);
+	  Assert.assertEquals(actual, exp);
+  }
+  
+  @DataProvider(name="addtestdata")
+  public Object[][] addtestdata(){
+	  return new Object [][] {
+		  {1,2,3},{2,2,4},{2,5,3}
+	  };
+  }
+  
+  @Test(dataProvider="subtestdata")
+  public void testsub(int n1,int n2,int exp) {
+	  int actual = cal.subract(n1, n2);
+	  Assert.assertEquals(actual, exp);
+  }
+  
+  @DataProvider(name="subtestdata")
+  public Object[][] subtestdata(){
+	  return new Object [][] {
+		  {3,1,2},{2,2,0},{2,1,3}
+	  };
+  }
+  
+  @Test(dataProvider="multestdata")
+  public void testmul(float n1,float n2,float exp) {
+	  float actual = cal.multiply(n1, n2);
+	  Assert.assertEquals(actual, exp);
+  }
+  
+  @DataProvider(name="multestdata")
+  public Object[][] multestdata(){
+	  return new Object [][] {
+		  {3,1,3},{2,2,4},{2,1,1}
+	  };
+  }
+  
+  @Test(dataProvider="divtestdata")
+  public void testdiv(double n1,double n2,double exp) {
+	  double actual = cal.divide(n1, n2);
+	  Assert.assertEquals(actual, exp);
+  }
+  
+  @DataProvider(name="divtestdata")
+  public Object[][] divtestdata(){
+	  return new Object [][] {
+		  {3,1,3},{2,2,1},{2,1,3}
+	  };
+  }
+  
+  
+}
+

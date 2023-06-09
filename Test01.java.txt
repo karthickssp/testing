@@ -1,0 +1,51 @@
+package TestNG.SeleniumNG;
+
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+
+public class Test01 {
+	
+  WebDriver driver;
+  @Test
+  public void T01() throws InterruptedException {
+	  Thread.sleep(3000);
+	  System.out.println("Test 01 !!");
+	  driver.findElement(By.xpath("/html/body/div/form/span/input[1]")).sendKeys("KARTHICK");
+  }
+  @Test
+  public void T02() throws InterruptedException {
+	  Thread.sleep(3000);
+	  System.out.println("Test 02 !!");
+	  driver.findElement(By.xpath("/html/body/div/form/span/input[2]")).sendKeys("ssp00@gmail.com");
+  }
+  @Test
+  public void T03() throws InterruptedException {
+	  Thread.sleep(3000);
+	  System.out.println("Test 03 !!");
+	  driver.findElement(By.xpath("/html/body/div/form/span/button")).click();
+  }
+  
+  @BeforeTest
+  public void beforeTest() {
+	  System.out.println("Test Started !!");
+	  WebDriverManager.chromedriver().setup();
+	  driver = new ChromeDriver();
+	  driver.get("https://maxneo.netlify.app/");
+	  driver.manage().window().maximize();
+  }
+
+  @AfterTest
+  public void afterTest() throws InterruptedException {
+	  System.out.println("Test Ended !!");
+	  Thread.sleep(3000);
+	  driver.close();
+  }
+
+}
